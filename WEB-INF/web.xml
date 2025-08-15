@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+                             http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+
+    <display-name>My Unity WebGL Game</display-name>
+
+    <!--
+        为 Unity WebGL 文件定义正确的 MIME 类型。
+        这是必须的，否则浏览器会因为安全原因拒绝加载 wasm 文件。
+    -->
+    <mime-mapping>
+        <extension>data</extension>
+        <mime-type>application/octet-stream</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+        <extension>js</extension>
+        <mime-type>application/javascript</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+        <extension>wasm</extension>
+        <mime-type>application/wasm</mime-type>
+    </mime-mapping>
+
+    <!--
+        为预压缩的 Gzip 文件定义 MIME 类型。
+        注意：我们没有在这里设置 Content-Encoding，因为我们依赖
+        Unity 的 Decompression Fallback 功能。这使得配置最简单。
+    -->
+    <mime-mapping>
+        <extension>data.gz</extension>
+        <mime-type>application/octet-stream</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+        <extension>js.gz</extension>
+        <mime-type>application/javascript</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+        <extension>wasm.gz</extension>
+        <mime-type>application/wasm</mime-type>
+    </mime-mapping>
+    
+    <!-- 对于Gzip压缩的文件（即使Decompression Fallback未开启时也可能用到） -->
+    <mime-mapping>
+        <extension>gz</extension>
+        <mime-type>application/gzip</mime-type>
+    </mime-mapping>
+
+    <!-- 关键！为Decompression Fallback使用的.unityweb文件添加MIME类型 -->
+    <mime-mapping>
+        <extension>unityweb</extension>
+        <mime-type>application/octet-stream</mime-type>
+    </mime-mapping>
+</web-app>
